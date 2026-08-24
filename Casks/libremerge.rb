@@ -7,7 +7,7 @@ cask "libremerge" do
   desc "Diff and merge tool for files, folders and CSV tables (WinMerge engine, Qt UI)"
   homepage "https://github.com/iagodpassos/libremerge"
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "LibreMerge.app"
 
