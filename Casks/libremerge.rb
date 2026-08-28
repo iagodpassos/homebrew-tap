@@ -1,6 +1,6 @@
 cask "libremerge" do
-  version "0.9.0"
-  sha256 "bf295284f9ac988f80f2a39b788b6394d29de0eb8029af66b9fb5b10080fae9e"
+  version "0.9.1"
+  sha256 "7b4a36f7b23388e29df7c6dfd3a358acf9b2c18bdd09d9aeeb1188ece084fc90"
 
   url "https://github.com/iagodpassos/libremerge/releases/download/v#{version}/LibreMerge-#{version}.dmg"
   name "LibreMerge"
