@@ -19,7 +19,8 @@ cask "libremerge" do
 
   caveats <<~EOS
     LibreMerge is not notarized by Apple yet. If macOS blocks the first
-    launch, right-click LibreMerge.app and choose Open, or install with:
-      brew reinstall --cask --no-quarantine libremerge
+    launch, right-click LibreMerge.app and choose Open, or clear the
+    download quarantine once:
+      xattr -d com.apple.quarantine /Applications/LibreMerge.app
   EOS
 end
