@@ -44,12 +44,46 @@ cask "libremerge" do
       exec "$dir/LibreMerge.AppImage" "$@"
     SH
 
-    zap trash: "~/.config/LibreMerge"
+    # the AppImage adds itself to the applications menu (a desktop entry and
+    # icons under ~/.local/share); failing never fails the install. Install
+    # steps run sandboxed with a stand-in $HOME (~ resolves there too), so the
+    # real data directory is spelled from the user name, reaches the AppImage
+    # as the working directory and --data-home=. points it there; homes
+    # outside /home fall back to the command in the caveats
+    postflight_steps do
+      run "LibreMerge.AppImage",
+          base:           :appimagedir,
+          args:           ["--install-desktop-integration", "--data-home=."],
+          env:            { "APPIMAGE_EXTRACT_AND_RUN" => "1" },
+          chdir:          "/home/{{user}}/.local/share",
+          must_succeed:   false,
+          writable_paths: ["/home/{{user}}/.local/share/applications", "/home/{{user}}/.local/share/icons"]
+    end
+
+    uninstall_preflight_steps do
+      run "LibreMerge.AppImage",
+          base:           :appimagedir,
+          args:           ["--remove-desktop-integration", "--data-home=."],
+          env:            { "APPIMAGE_EXTRACT_AND_RUN" => "1" },
+          chdir:          "/home/{{user}}/.local/share",
+          must_succeed:   false,
+          writable_paths: ["/home/{{user}}/.local/share/applications", "/home/{{user}}/.local/share/icons"]
+    end
+
+    zap trash: [
+      "~/.config/LibreMerge",
+      "~/.local/share/applications/libremerge.desktop",
+      "~/.local/share/icons/hicolor/*/apps/libremerge.png",
+    ]
 
     caveats <<~EOS
       The AppImage needs glibc 2.36 or newer (Debian 12+, Ubuntu 24.04+,
-      Fedora 37+, Arch). It lives in ~/Applications and runs as:
+      Fedora 37+, Arch). It lives in ~/Applications and runs from the
+      terminal as:
         libremerge
+      It is added to the applications menu; if it does not show up there,
+      run once:
+        libremerge --install-desktop-integration
     EOS
   end
 
