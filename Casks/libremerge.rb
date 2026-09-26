@@ -1,5 +1,5 @@
 cask "libremerge" do
-  url_end = on_system_conditional macos: "dmg", linux: "AppImage"
+  os macos: "dmg", linux: "AppImage"
 
   version "0.9.4"
   sha256 arm:          "7f4ae9c25f093d4c34b7e6bdc634d67c9f49796907ac448a68d1d89799d97f15",
@@ -29,9 +29,18 @@ cask "libremerge" do
     arch arm: "-aarch64", intel: "-x86_64"
 
     app_image "LibreMerge-#{version}#{arch}.AppImage", target: "LibreMerge.AppImage"
+
+    zap trash: "~/.config/LibreMerge"
+
+    caveats <<~EOS
+      The AppImage needs glibc 2.36 or newer (Debian 12+, Ubuntu 24.04+,
+      Fedora 37+, Arch). Homebrew places it in ~/Applications and does not
+      add a menu entry; run it as:
+        ~/Applications/LibreMerge.AppImage
+    EOS
   end
 
-  url "https://github.com/iagodpassos/libremerge/releases/download/v#{version}/LibreMerge-#{version}#{arch}.#{url_end}"
+  url "https://github.com/iagodpassos/libremerge/releases/download/v#{version}/LibreMerge-#{version}#{arch}.#{os}"
   name "LibreMerge"
   desc "Diff and merge tool for files, folders and CSV tables (WinMerge engine, Qt UI)"
   homepage "https://github.com/iagodpassos/libremerge"
