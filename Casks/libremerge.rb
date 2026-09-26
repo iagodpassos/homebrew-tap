@@ -29,14 +29,27 @@ cask "libremerge" do
     arch arm: "-aarch64", intel: "-x86_64"
 
     app_image "LibreMerge-#{version}#{arch}.AppImage", target: "LibreMerge.AppImage"
+    # `libremerge` on PATH (git mergetool, terminal use). The DSL does not
+    # expose appimagedir, so the wrapper finds the AppImage at run time:
+    # ~/Applications, or an --appimagedir set in HOMEBREW_CASK_OPTS
+    command_wrapper "libremerge", content: <<~'SH'
+      #!/bin/sh
+      dir="$HOME/Applications"
+      for opt in $HOMEBREW_CASK_OPTS; do
+        case "$opt" in
+          --appimagedir=*) dir="${opt#--appimagedir=}" ;;
+        esac
+      done
+      case "$dir" in "~"*) dir="$HOME${dir#\~}" ;; esac
+      exec "$dir/LibreMerge.AppImage" "$@"
+    SH
 
     zap trash: "~/.config/LibreMerge"
 
     caveats <<~EOS
       The AppImage needs glibc 2.36 or newer (Debian 12+, Ubuntu 24.04+,
-      Fedora 37+, Arch). Homebrew places it in ~/Applications and does not
-      add a menu entry; run it as:
-        ~/Applications/LibreMerge.AppImage
+      Fedora 37+, Arch). It lives in ~/Applications and runs as:
+        libremerge
     EOS
   end
 
