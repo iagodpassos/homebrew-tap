@@ -1,11 +1,11 @@
 cask "libremerge" do
   os macos: "dmg", linux: "AppImage"
 
-  version "0.9.5"
-  sha256 arm:          "b2290ee1a270b4807a33db8e0949c729cc593503468f15262a7306142aca85f7",
-         intel:        "b2290ee1a270b4807a33db8e0949c729cc593503468f15262a7306142aca85f7",
-         arm64_linux:  "50114841496ba1e2128601600fbb18beeecbd7969414c5daca078374dd76cad0",
-         x86_64_linux: "a74ab76e46d808c4362da621082c071ae4e16fdff4793e4e6002b8e5345bc720"
+  version "0.9.6"
+  sha256 arm:          "31f65595944cb64727238c8c42508e8004ce07053e312a0c4124a67c8810be9c",
+         intel:        "31f65595944cb64727238c8c42508e8004ce07053e312a0c4124a67c8810be9c",
+         arm64_linux:  "721105648f3de2ef097e885464b94e48ab2896ad5ccd3545725cfe175784b6e4",
+         x86_64_linux: "b5eb4becfea73a3392506e5f8fabf672d603991659d9f154a277393054ef8b03"
 
   on_macos do
     depends_on macos: :monterey
@@ -77,8 +77,8 @@ cask "libremerge" do
     ]
 
     caveats <<~EOS
-      The AppImage needs glibc 2.36 or newer (Debian 12+, Ubuntu 24.04+,
-      Fedora 37+, Arch). It lives in ~/Applications and runs from the
+      The AppImage needs glibc 2.35 or newer (Debian 12+, Ubuntu 22.04+,
+      Fedora 36+, Arch). It lives in ~/Applications and runs from the
       terminal as:
         libremerge
       It is added to the applications menu; if it does not show up there,
