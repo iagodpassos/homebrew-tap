@@ -1,11 +1,11 @@
 cask "libremerge" do
   os macos: "dmg", linux: "AppImage"
 
-  version "1.0.0"
-  sha256 arm:          "43e9e4caf0f215fdfdb212b824a137bbdce7e87b819e9bec75ca18e1e5ca80fd",
-         intel:        "43e9e4caf0f215fdfdb212b824a137bbdce7e87b819e9bec75ca18e1e5ca80fd",
-         arm64_linux:  "ad974d29254b12d56442b752ddfd3c028d7d7cf2102f163b620e45eac4ace10c",
-         x86_64_linux: "ecc78282e06982ce77c26b7a25bcfc92a8181ee9a5f9aeb97d1c2086e09e2cc3"
+  version "1.0.1"
+  sha256 arm:          "86deaf93fd0a4e6a81c5da6a3640c626d939f0cffd37a858724dd4f454804a08",
+         intel:        "86deaf93fd0a4e6a81c5da6a3640c626d939f0cffd37a858724dd4f454804a08",
+         arm64_linux:  "d3f30bde9a9f56d99de885692088072b728745c6def6977962508b11b1a767e4",
+         x86_64_linux: "7093639e82edfc7d98aff0b25f21450ec3d02a15872e9d6c475499e9037b05a6"
 
   on_macos do
     depends_on macos: :sonoma
