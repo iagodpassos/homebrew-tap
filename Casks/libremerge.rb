@@ -1,14 +1,14 @@
 cask "libremerge" do
   os macos: "dmg", linux: "AppImage"
 
-  version "0.9.9"
-  sha256 arm:          "50c85b236dffe1cc5bc513972e29c383f31c290d1f29c8a47e580f597bd49223",
-         intel:        "50c85b236dffe1cc5bc513972e29c383f31c290d1f29c8a47e580f597bd49223",
-         arm64_linux:  "5d4d455e05006552e12b1d81778dfd448291e1b35b78f14895af80ebb838931c",
-         x86_64_linux: "d033835b8a8837aa38d0318e863d51eb89f997e391002e9cf19f2b6f1217479a"
+  version "1.0.0"
+  sha256 arm:          "43e9e4caf0f215fdfdb212b824a137bbdce7e87b819e9bec75ca18e1e5ca80fd",
+         intel:        "43e9e4caf0f215fdfdb212b824a137bbdce7e87b819e9bec75ca18e1e5ca80fd",
+         arm64_linux:  "ad974d29254b12d56442b752ddfd3c028d7d7cf2102f163b620e45eac4ace10c",
+         x86_64_linux: "ecc78282e06982ce77c26b7a25bcfc92a8181ee9a5f9aeb97d1c2086e09e2cc3"
 
   on_macos do
-    depends_on macos: :monterey
+    depends_on macos: :sonoma
 
     app "LibreMerge.app"
 
