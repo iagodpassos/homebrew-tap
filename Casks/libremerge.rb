@@ -1,11 +1,11 @@
 cask "libremerge" do
   os macos: "dmg", linux: "AppImage"
 
-  version "1.4.0"
-  sha256 arm:          "2778d058f82c2822d158c1c8266e549bade05fd13d53d56595b9ac72f64d3b00",
-         intel:        "2778d058f82c2822d158c1c8266e549bade05fd13d53d56595b9ac72f64d3b00",
-         arm64_linux:  "6a28d42da2ff826ed288b5179146d5a9e9ea9b8ed7d078b4176fe526eb5017d6",
-         x86_64_linux: "bd5c51f9224e0728467affbc41afc09401909761af7040f3d1544a7d53326e9a"
+  version "1.5.0"
+  sha256 arm:          "3ad2ca097acd52fd81bfb63c80aeeed7c3753afc7925d8de87cea32d7f19b3e9",
+         intel:        "3ad2ca097acd52fd81bfb63c80aeeed7c3753afc7925d8de87cea32d7f19b3e9",
+         arm64_linux:  "d6d526d4e9ed8a7017865eac50b4303af8d05d1d77bc2577ed38b48dd5db12ea",
+         x86_64_linux: "fcfba0527bd01c7d1259679be0d1c020a94443801ac55232081bc2533ea8dc67"
 
   on_macos do
     depends_on macos: :sonoma
@@ -91,8 +91,8 @@ cask "libremerge" do
       Fedora 36+, Arch). It lives in ~/Applications and runs from the
       terminal as:
         libremerge
-      It is added to the applications menu; if it does not show up there,
-      run once:
+      It is added to the applications menu (and to Dolphin's context menu
+      on KDE); if it does not show up there, run once:
         libremerge --install-desktop-integration
     EOS
   end
