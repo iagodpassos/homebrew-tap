@@ -44,8 +44,9 @@ cask "libremerge" do
       exec "$dir/LibreMerge.AppImage" "$@"
     SH
 
-    # the AppImage adds itself to the applications menu (a desktop entry and
-    # icons under ~/.local/share); failing never fails the install. Install
+    # the AppImage adds itself to the applications menu and, from 1.5.0, to
+    # Dolphin's context menu (a desktop entry, icons and a KDE service menu
+    # under ~/.local/share); failing never fails the install. Install
     # steps run sandboxed with a stand-in $HOME (~ resolves there too), so the
     # real data directory is spelled from the user name, reaches the AppImage
     # as the working directory and --data-home=. points it there; homes
@@ -57,7 +58,11 @@ cask "libremerge" do
           env:            { "APPIMAGE_EXTRACT_AND_RUN" => "1" },
           chdir:          "/home/{{user}}/.local/share",
           must_succeed:   false,
-          writable_paths: ["/home/{{user}}/.local/share/applications", "/home/{{user}}/.local/share/icons"]
+          writable_paths: [
+            "/home/{{user}}/.local/share/applications",
+            "/home/{{user}}/.local/share/icons",
+            "/home/{{user}}/.local/share/kio/servicemenus",
+          ]
     end
 
     uninstall_preflight_steps do
@@ -67,13 +72,18 @@ cask "libremerge" do
           env:            { "APPIMAGE_EXTRACT_AND_RUN" => "1" },
           chdir:          "/home/{{user}}/.local/share",
           must_succeed:   false,
-          writable_paths: ["/home/{{user}}/.local/share/applications", "/home/{{user}}/.local/share/icons"]
+          writable_paths: [
+            "/home/{{user}}/.local/share/applications",
+            "/home/{{user}}/.local/share/icons",
+            "/home/{{user}}/.local/share/kio/servicemenus",
+          ]
     end
 
     zap trash: [
       "~/.config/LibreMerge",
       "~/.local/share/applications/libremerge.desktop",
       "~/.local/share/icons/hicolor/*/apps/libremerge.png",
+      "~/.local/share/kio/servicemenus/libremerge.desktop",
     ]
 
     caveats <<~EOS
